@@ -17,7 +17,8 @@ import qualified Data.Text as T
 main :: IO ()
 main = do
     cfg <- getConfig "appsettings.dev.ini"
-
+    print "sdfsf"
+    print ""
     let e = cfgApiEndpoints cfg
     let endpoint = api e
 
@@ -41,5 +42,5 @@ someRequest url authToken = do
             }
     response <- httpLbs req manager 
 
-    putStrLn $ "Status " ++ (show $ statusCode $ responseStatus response)
+    putStrLn $ "Status " ++ show (statusCode $ responseStatus response)
     return $ BS.unpack $ responseBody response
