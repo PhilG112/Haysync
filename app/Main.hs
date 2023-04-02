@@ -17,14 +17,11 @@ import qualified Data.Text as T
 main :: IO ()
 main = do
     cfg <- getConfig "appsettings.dev.ini"
-    print "sdfsf"
-    print ""
     let e = cfgApiEndpoints cfg
     let endpoint = api e
 
     let a = cfgAuth cfg
     let t = token a
-
     args <- getArgs
     withAsync (someRequest (endpoint ++ "/orders/" ++ head args) t) $ \a1 -> do
         w1 <- wait a1
