@@ -17,13 +17,11 @@ import qualified Data.Text as T
 main :: IO ()
 main = do
     cfg <- getConfig "appsettings.dev.ini"
-
     let e = cfgApiEndpoints cfg
     let endpoint = api e
 
     let a = cfgAuth cfg
     let t = token a
-
     args <- getArgs
     withAsync (someRequest (endpoint ++ "/orders/" ++ head args) t) $ \a1 -> do
         w1 <- wait a1
@@ -41,5 +39,5 @@ someRequest url authToken = do
             }
     response <- httpLbs req manager 
 
-    putStrLn $ "Status " ++ (show $ statusCode $ responseStatus response)
+    putStrLn $ "Status " ++ show (statusCode $ responseStatus response)
     pure $ BS.unpack $ responseBody response
