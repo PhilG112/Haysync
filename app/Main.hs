@@ -42,4 +42,4 @@ someRequest url authToken = do
     response <- httpLbs req manager 
 
     putStrLn $ "Status " ++ (show $ statusCode $ responseStatus response)
-    return $ BS.unpack $ responseBody response
+    pure $ BS.unpack $ responseBody response
