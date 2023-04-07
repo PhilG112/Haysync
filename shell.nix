@@ -1,1 +1,4 @@
-(import ./default.nix).haysync.env
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+    buildInputs = [ pkgs.haskell-language-server ];
+}
